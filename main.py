@@ -26,23 +26,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.markdown(
-    """
-    <style>
-    /* Força fundo claro */
-    body, [data-testid="stAppViewContainer"] {
-        background-color: #faf8f5 !important;
-        color: #362A22 !important;
-    }
-    section[data-testid="stSidebar"] {
-        background-color: #FBF5F2 !important;
-        color: #362A22 !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # =========================
 # ESTADO GLOBAL
 # =========================
@@ -50,10 +33,10 @@ def init_session_state():
     """Inicializa o estado da sessão"""
     if "carrinho" not in st.session_state:
         st.session_state.carrinho = {}
-    
+
     if "show_toast" not in st.session_state:
         st.session_state.show_toast = False
-    
+
     if "toast_message" not in st.session_state:
         st.session_state.toast_message = ""
 
@@ -179,7 +162,7 @@ PRODUTOS_ESCONDIDINHOS = [
 def adicionar_ao_carrinho(produto: Produto) -> None:
     """Adiciona um produto ao carrinho"""
     nome = produto.nome
-    
+
     if nome in st.session_state.carrinho:
         st.session_state.carrinho[nome]["quantidade"] += 1
     else:
@@ -187,7 +170,7 @@ def adicionar_ao_carrinho(produto: Produto) -> None:
             "preco": produto.preco,
             "quantidade": 1
         }
-    
+
     st.session_state.toast_message = f"✓ {nome} adicionado!"
     st.session_state.show_toast = True
 
@@ -196,7 +179,7 @@ def alterar_quantidade(nome: str, delta: int) -> None:
     """Altera a quantidade de um item no carrinho"""
     if nome in st.session_state.carrinho:
         st.session_state.carrinho[nome]["quantidade"] += delta
-        
+
         if st.session_state.carrinho[nome]["quantidade"] <= 0:
             del st.session_state.carrinho[nome]
 
@@ -481,22 +464,22 @@ def mostrar_toast():
 def renderizar_produto(produto: Produto):
     """Renderiza um card de produto"""
     st.markdown("<div class='product-row'>", unsafe_allow_html=True)
-    
+
     col1, col2 = st.columns([1.5, 3.5])
-    
+
     with col1:
         if produto.imagem:
             try:
                 st.image(produto.imagem, width=160)
             except Exception:
                 st.markdown("🍱", unsafe_allow_html=True)
-    
+
     with col2:
         st.markdown(f"<div class='product-name'>{produto.nome}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='product-description'>{produto.descricao}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='product-weight'>Peso: {produto.peso}</div>", unsafe_allow_html=True)
         st.markdown(f"<div class='product-price'>R$ {produto.preco:.2f}</div>", unsafe_allow_html=True)
-        
+
         st.button(
             "＋ Adicionar",
             key=f"add_{produto.nome}",
@@ -504,7 +487,7 @@ def renderizar_produto(produto: Produto):
             args=(produto,),
             use_container_width=True
         )
-    
+
     st.markdown("</div>", unsafe_allow_html=True)
 
 
@@ -515,7 +498,7 @@ def renderizar_sidebar():
             st.image("logo.png", use_container_width=True)
         except Exception:
             st.markdown("# 🍱 Marmitas da Babá")
-        
+
         st.markdown("""
         ### 📋 Como funciona
         1️⃣ Escolha as marmitas  
@@ -525,7 +508,7 @@ def renderizar_sidebar():
         📸 @marmitasdababa  
         📞 (51) 99887-0311
         """)
-        
+
         # Badge do carrinho na sidebar
         num_itens = contar_itens()
         if num_itens > 0:
@@ -541,35 +524,35 @@ def renderizar_carrinho():
     """Renderiza o carrinho de compras"""
     if not st.session_state.carrinho:
         return
-    
+
     st.markdown("## 🛒 Seu Pedido")
-    
+
     for nome, item in list(st.session_state.carrinho.items()):
         col1, col2, col3, col4 = st.columns([4, 1, 1, 1])
-        
+
         with col1:
             subtotal = item['preco'] * item['quantidade']
             st.markdown(f"**{nome}**  \n{item['quantidade']}x • R$ {item['preco']:.2f}")
-        
+
         with col2:
             st.button("➖", key=f"menos_{nome}", on_click=alterar_quantidade, args=(nome, -1))
-        
+
         with col3:
             st.markdown(f"<div class='cart-qty'>{item['quantidade']}</div>", unsafe_allow_html=True)
-        
+
         with col4:
             st.button("➕", key=f"mais_{nome}", on_click=alterar_quantidade, args=(nome, 1))
-    
+
     # Total e botões
     col1, col2 = st.columns([3, 1])
-    
+
     with col1:
         total = calcular_total()
         st.markdown(f"<div class='cart-total'>Total: R$ {total:.2f}</div>", unsafe_allow_html=True)
-    
+
     with col2:
         st.button("🗑️ Limpar", on_click=limpar_carrinho, use_container_width=True)
-    
+
     # Botão WhatsApp
     gerar_botao_whatsapp()
 
@@ -577,15 +560,15 @@ def renderizar_carrinho():
 def gerar_botao_whatsapp():
     """Gera o botão de finalização via WhatsApp"""
     mensagem = "Olá! Gostaria de fazer o pedido:\n\n"
-    
+
     for nome, item in st.session_state.carrinho.items():
         mensagem += f"• {item['quantidade']}x {nome} - R$ {item['preco'] * item['quantidade']:.2f}\n"
-    
+
     total = calcular_total()
     mensagem += f"\n*Total: R$ {total:.2f}*"
-    
+
     link = "https://wa.me/5551998870311?text=" + urllib.parse.quote(mensagem)
-    
+
     st.markdown(
         f"<a href='{link}' target='_blank' class='whatsapp-button'>📲 Finalizar no WhatsApp</a>", 
         unsafe_allow_html=True
@@ -598,13 +581,13 @@ def main():
     """Função principal da aplicação"""
     # Aplicar estilos
     aplicar_estilos()
-    
+
     # Mostrar toast se necessário
     mostrar_toast()
-    
+
     # Renderizar sidebar
     renderizar_sidebar()
-    
+
     # Cabeçalho
     st.title("🍱 Marmitas Personalizadas!")
 
@@ -617,22 +600,22 @@ def main():
 """)
 
     st.markdown("---")
-    
+
     # Tabs de produtos
     tab1, tab2 = st.tabs(["🍽️ Dia a Dia", "🥘 Escondidinhos"])
-    
+
     with tab1:
         for produto in PRODUTOS_DIA_A_DIA:
             renderizar_produto(produto)
-    
+
     with tab2:
         for produto in PRODUTOS_ESCONDIDINHOS:
             renderizar_produto(produto)
-    
+
     # Carrinho
     st.markdown("---")
     renderizar_carrinho()
-    
+
     # Rodapé
     st.markdown("---")
     st.caption("💻 Feito com carinho por Arthur Sehnem")
@@ -641,6 +624,3 @@ def main():
 if __name__ == "__main__":
 
     main()
-
-
-
