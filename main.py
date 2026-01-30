@@ -26,6 +26,23 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+st.markdown(
+    """
+    <style>
+    /* Força fundo claro */
+    body, [data-testid="stAppViewContainer"] {
+        background-color: #faf8f5 !important;
+        color: #362A22 !important;
+    }
+    section[data-testid="stSidebar"] {
+        background-color: #FBF5F2 !important;
+        color: #362A22 !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # =========================
 # ESTADO GLOBAL
 # =========================
@@ -624,5 +641,6 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
