@@ -26,51 +26,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.markdown("""
-<style>
-/* Fundo principal do app */
-[data-testid="stAppViewContainer"] {
-    background-color: #faf8f5 !important;
-    color: #362A22 !important;
-}
-
-/* Fundo e textos da sidebar */
-[data-testid="stSidebar"] {
-    background-color: #FBF5F2 !important;
-    color: #362A22 !important;
-}
-
-/* Textos gerais */
-h1, h2, h3, h4, h5, h6, p, span, div {
-    color: #362A22 !important;
-}
-
-/* Tabs */
-.stTabs [data-baseweb="tab"] {
-    background: white !important;
-    color: #3d2817 !important;
-}
-.stTabs [aria-selected="true"] {
-    background: linear-gradient(135deg,#d4a574,#c29560) !important;
-    color: white !important;
-}
-
-/* Botões */
-.stButton > button {
-    background-color: white !important;
-    color: #362A22 !important;
-    border-color: #E5D8CC !important;
-}
-
-/* Inputs, sliders, selects */
-.stTextInput, .stNumberInput, .stSelectbox, .stSlider {
-    background-color: white !important;
-    color: #362A22 !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
-
 # =========================
 # ESTADO GLOBAL
 # =========================
@@ -669,4 +624,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
