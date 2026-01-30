@@ -51,42 +51,42 @@ PRODUTOS_DIA_A_DIA = [
         descricao="Arroz branco (100g), feijão (100g), filé de frango grelhado (130g) e mix de legumes (100g).",
         peso="430g",
         preco=22.00,
-        imagem="images/frango.jpg"
+        imagem="frango.jpg"
     ),
     Produto(
         nome="Carne moída com arroz, feijão e moranga",
         descricao="Arroz branco (100g), feijão (100g), carne moída (130g) e purê de moranga cabotiá (100g).",
         peso="430g",
         preco=22.00,
-        imagem="images/carne_moida.png"
+        imagem="carne_moida.png"
     ),
     Produto(
         nome="Penne com iscas de alcatra e legumes",
         descricao="Massa penne (100g), iscas de alcatra (130g) e mix de legumes (120g).",
         peso="350g",
         preco=20.00,
-        imagem="images/penne_alcatra.jpg"
+        imagem="penne_alcatra.jpg"
     ),
     Produto(
         nome="Penne com carne moída e legumes",
         descricao="Massa penne (100g), carne moída (130g) e mix de legumes (120g).",
         peso="350g",
         preco=20.00,
-        imagem="images/penne_carne.jpg"
+        imagem="penne_carne.jpg"
     ),
     Produto(
         nome="Alcatra com arroz e purê de moranga",
         descricao="Arroz branco (100g), iscas de alcatra (130g) e purê de moranga cabotiá (120g).",
         peso="350g",
         preco=20.00,
-        imagem="images/alcatra_moranga.png"
+        imagem="alcatra_moranga.png"
     ),
     Produto(
         nome="Frango cremoso com arroz e legumes",
         descricao="Arroz branco (100g), iscas de frango cremoso (130g) e mix de legumes (120g).",
         peso="350g",
         preco=20.00,
-        imagem="images/frango_cremoso.jpg"
+        imagem="frango_cremoso.jpg"
     )
 ]
 
@@ -97,7 +97,7 @@ PRODUTOS_ESCONDIDINHOS = [
         peso="350g",
         preco=23.00,
         categoria="escondidinhos",
-        imagem = "images/escondidinho-carne-panela.png"
+        imagem = "escondidinho-carne-panela.png"
     ),
     Produto(
         nome="Escondidinho de frango desfiado com aipim",
@@ -105,7 +105,7 @@ PRODUTOS_ESCONDIDINHOS = [
         peso="350g",
         preco=23.00,
         categoria="escondidinhos",
-        imagem = "images/escondidinho-carne-panela.png"
+        imagem = "escondidinho-carne-panela.png"
 
     ),
     Produto(
@@ -114,7 +114,7 @@ PRODUTOS_ESCONDIDINHOS = [
         peso="350g",
         preco=23.00,
         categoria="escondidinhos",
-        imagem = "images/escondidinho-carne-panela.png"
+        imagem = "escondidinho-carne-panela.png"
 
     ),
     Produto(
@@ -123,7 +123,7 @@ PRODUTOS_ESCONDIDINHOS = [
         peso="350g",
         preco=23.00,
         categoria="escondidinhos",
-        imagem = "images/escondidinho-carne-panela.png"
+        imagem = "escondidinho-carne-panela.png"
 
     ),
     Produto(
@@ -132,7 +132,7 @@ PRODUTOS_ESCONDIDINHOS = [
         peso="350g",
         preco=23.00,
         categoria="escondidinhos",
-        imagem = "images/escondidinho-carne-panela.png"
+        imagem = "escondidinho-carne-panela.png"
 
     ),
     Produto(
@@ -141,7 +141,7 @@ PRODUTOS_ESCONDIDINHOS = [
         peso="350g",
         preco=23.00,
         categoria="escondidinhos",
-        imagem = "images/escondidinho-carne-panela.png"
+        imagem = "escondidinho-carne-panela.png"
 
     ),
     Produto(
@@ -150,7 +150,7 @@ PRODUTOS_ESCONDIDINHOS = [
         peso="350g",
         preco=23.00,
         categoria="escondidinhos",
-        imagem = "images/escondidinho-carne-panela.png"
+        imagem = "escondidinho-carne-panela.png"
 
 
     )
@@ -495,7 +495,7 @@ def renderizar_sidebar():
     """Renderiza a sidebar com informações"""
     with st.sidebar:
         try:
-            st.image("images/logo.png", use_container_width=True)
+            st.image("logo.png", use_container_width=True)
         except Exception:
             st.markdown("# 🍱 Marmitas da Babá")
         
@@ -622,4 +622,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
